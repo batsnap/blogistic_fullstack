@@ -1,0 +1,1 @@
+# blogistic_fullstack
