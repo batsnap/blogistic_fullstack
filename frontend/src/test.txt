@@ -1,0 +1,113 @@
+<div className="container-fluid">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              <a className="nav-item nav-link" href="/">ClientS</a>
+              <a className="nav-item nav-link" href="/customer">CREATE CLIENT</a>
+
+            </div>
+          </div>
+        </nav>  
+
+        <div className="content">
+          <Route path="/" exact component={ClientsList} />
+
+        </div>
+
+      </div>
+
+export default function App() {
+		const [post, setPost] = React.useState();
+	
+		React.useEffect(() => {
+				axios.get("http://localhost:8000/api/Clients/").then((response) => {
+				setPost(response.data);
+			});
+		}, [])  ;
+		if (!post) return null;
+		return (
+			<div>
+				<div class="row">
+					<div className="col-sm-2">
+						asd
+					</div>
+
+					<div className="col-sm-8">
+						<table className="table">
+						{post.data.sort((a, b) => a.birthday > b.birthday ? 1:-1).map(c=>
+							<div>
+								<tr>
+									<th>{c.id_client}</th>
+									<td>{c.Full_name}</td>
+									<td>{c.Card_number}</td>
+									<td>{c.birthday}</td>
+									<br></br>
+								</tr>
+							</div>
+							)}
+						</table>
+					</div>
+
+					<div className="col-sm-2">
+						<button onClick={}>sort</button>
+					</div>
+				</div>
+			</div>	
+		);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export default function App() {
+	const [post, setPost] = React.useState();
+	React.useEffect(() => {
+		fetch("http://localhost:8000/api/Clients/").then(response => response.json()).then((result)=>{setPost(result.data);});
+	}, []);
+	
+	
+	if (!post) return null;
+	function sorting(){
+		setPost(m);
+	}
+	return (
+		<div>
+			<div className="row">
+				<div className="col-sm-2">
+					asd
+				</div>
+
+				<div className="col-sm-8">
+					{post.map(c=>
+						<table className="table">
+							<tr>
+								<th>{c.id_client}</th>
+								<td>{c.Full_name}</td>
+								<td>{c.Card_number}</td>
+								<td>{c.birthday}</td>
+								<br></br>
+							</tr>
+						</table>
+						)}
+					
+				</div>
+
+				<div className="col-sm-2">
+					<button onClick={sorting}>dadsa</button>
+				</div>
+			</div>
+		</div>	
+	);
+}
