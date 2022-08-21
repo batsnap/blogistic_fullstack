@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 const axios = require('axios')
 export default class Registration extends Component {
+	// Формы лучше контролить через сторонние библиотеки, все уже придумано. Вот 2 примера
+	// https://formik.org/
+	// https://redux-form.com/8.3.0/ (если использовать redux)
 	constructor(props) {
 		super(props);
 		this.state = {

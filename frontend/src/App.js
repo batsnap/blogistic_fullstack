@@ -11,8 +11,13 @@ import WorkersList from "./components/list_wokers";
 import OrderList from "./components/list_orders";
 import Order from "./components/Order";
 import ClientOrder from "./components/client_orders";
-import {Route, BrowserRouter,Routes} from 'react-router-dom'; 
+import {Route, BrowserRouter,Routes} from 'react-router-dom';
 
+// Тут все ок
+// minors:
+// обычно компоненты, у которых нет child-ов коллапсятся <Component></Component> => <Component />
+// Также лично я предпочел бы оставлять в App только одну компоненту, а все роуты вынести в отдельный компонент
+// AppRoutes или типо того
 export default function App() {
 	return (
 		<div>

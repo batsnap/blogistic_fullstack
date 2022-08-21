@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function CheckToken(token)
 {
+	// var устаревший. Используй const / let
     var status;
 	axios.get('http://localhost:8000/api/CheckToken',
     {
