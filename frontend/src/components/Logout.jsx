@@ -3,6 +3,10 @@ class Logout extends React.Component {
   constructor(props){
     super(props);
     localStorage.clear();
+
+    // Если используешь React router, то избегай манипуляций через window.
+    // https://v5.reactrouter.com/web/api/withRouter
+    // Компоненту можно обернуть в хок withRouter, взять из него location и с ним проворачивать все, что тебе нужно
     window.location.replace('/login');
   }
   render(){

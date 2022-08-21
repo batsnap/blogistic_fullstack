@@ -83,15 +83,17 @@ class ClientsList extends React.Component {
 			  </tr>
 			</thead>
 			<tbody>
-			  {this.state.post.map(posts=>
-				  <tr>
-					<td><a href={"clients/"+posts.id_client} key={posts.id_client} className="text-light">{posts.id_client}</a></td>
-					<td>{posts.Full_name}</td>
-					<td>{posts.birthday}</td>
-					<td>{posts.Card_number}</td>
-					<td>{posts.email}</td>
-				  </tr>
-			  )}
+			{/*если постоянно приходится делать обращение по ключу, то лучше распаковать сразу*/}
+			{/*  {this.state.post.map(posts=>*/}
+			{this.state.post.map(({id_client, Full_name, birthday, Card_number, email})=>
+				<tr>
+					<td><a href={"clients/"+id_client} key={id_client} className="text-light">{id_client}</a></td>
+					<td>{Full_name}</td>
+					<td>{birthday}</td>
+					<td>{Card_number}</td>
+					<td>{email}</td>
+				</tr>
+			)}
 			</tbody>
 		  </table>
 		  </div>
