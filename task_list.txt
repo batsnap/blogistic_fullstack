@@ -3,8 +3,9 @@
     -проверка на занятый логин-готово
     -проверка на занятый почту-готово
     -проверка на правильность пароля-готово
-    -проверка на правильность даты рождения
+    -проверка на правильность даты рождения-готово
     -общая проверка валидность введеных данных
+1.1) Сделать главную страницу
 2)Сделать проверку на логин на всех страницах
 3)Распрелелить компоненты пользователей и общие компоненты по разным папкам
 4)Раздельная генерация интрфесов для всех видов пользователей
@@ -41,21 +42,12 @@
     -сделать код читабельным
     -добавить комментарии
 
-{"username":"this.state.username",
-"email":"this.state.email",
-"password":"this.state.password",
-"birthday":"this.state.birthday",
-"name":"this.state.name",
-"surname":"this.state.surname"}
-user_reg=User()
-	user_reg.id=User.objects.count()+1
-	user_reg.email=request.data['email']
-	user_reg.username=request.data['username']
-	user_reg.first_name=request.data['name']
-	user_reg.last_name=request.data['surname']
-	user_reg.set_password(request.data['password'])
-	user_reg.save()
-	my_group = Group.objects.get(name='client') 
-	my_group.user_set.add(user_reg)	
-	my_group.save()
-	print(request.data)
+
+    Матвеев Андрей Максимович/CfCRAJpu/Matveev_Andrei_Maksimovich3/Оператор/Matveev_Andrei_Maksimovich3@sorrrry.xyz/+76357913183/4232 184904/07.10.1959
+
+
+
+    SELECT COUNT(Mark),Exam.Subject, Student.NameGroup from Exam
+JOIN Student on dbo.Exam.Id_Student=dbo.Student.Id_Student
+WHERE Mark=5 and Student.NameGroup=N'А-12-01             '
+GROUP BY Subject,NameGroup

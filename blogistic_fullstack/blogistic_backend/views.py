@@ -1,3 +1,5 @@
+from hashlib import new
+from . import length
 from multiprocessing.connection import Client
 from rest_framework.response import Response
 from rest_framework.request import Request
@@ -17,25 +19,24 @@ def user(request: Request):
     return Response({'data': userSerializer(request.user).data})
 
 def generation_base(d):
-	a=[]
-	users_in_group_operator= Group.objects.get(name="operator").user_set.all()
-	for i in users_in_group_operator:
-		a.append(i.id)
-	users_in_group_client= Group.objects.get(name="client").user_set.all()
-	for i in users_in_group_client:
-		a.append(i.id)
-	k=[i.id for i in User.objects.all()]
-	for i in range(len(a)):
-		if a[i] in k:
-			k.remove(a[i])
-	print(k)
-	group = Group.objects.get(name='worker')
-	for i in range(len(k)):
-		c=User.objects.all().filter(id=k[i])[0]
-		c.groups.add(group)
-		c.save()
+	new_user=User()
+	new_user.username='aaaaaaaaa'
+	new_user.last_name='аааааааааа'
+	new_user.first_name='аааааааааа'
+	new_user.set_password('1111')
+	new_user.email='aaa@aaa.ru'
+	new_user.id=User.objects.all().order_by('id').reverse()[0].id+1
+	new_user.save()
+	new_worker=worker()
+	new_worker.user=new_user
+	new_worker.id_worker=worker.objects.all().order_by('id_worker').reverse()[0].id_worker+1
+	new_worker.Full_name='aaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa'
+	new_worker.birthday='2001-02-01'
+	new_worker.series_number_passport='1111 111111'
+	new_worker.phone_number='+1111111111'
+	new_worker.experience='123'
+	new_worker.save()
 	return Response(status=status.HTTP_200_OK)
-	client
 	
 @api_view(['GET', 'POST'])
 def clients_list(request):

@@ -1,0 +1,316 @@
+CREATE TABLE "client" 
+(
+    "id_client" integer NOT NULL PRIMARY KEY, 
+    "Full_name" varchar(50) NOT NULL, 
+    "birthday" date NOT NULL, 
+    "phone_number" varchar(30) NOT NULL, 
+    "series_number_passport" varchar(12) NOT NULL, 
+)
+
+CREATE TABLE "worker" 
+(
+    "id_worker" integer NOT NULL PRIMARY KEY, 
+    "Full_name" varchar(50) NOT NULL, 
+    "experience" varchar(30) NOT NULL, 
+    "position" varchar(30) NOT NULL DEFAULT 'Водитель',
+    "phone_number" varchar(14) NOT NULL,
+    "birthday" date NOT NULL, 
+    "series_number_passport" varchar(12) NOT NULL, 
+);
+
+CREATE TABLE "operator" 
+(
+    "id_operator" integer NOT NULL PRIMARY KEY, 
+    "Full_name" varchar(50) NOT NULL, 
+    "experience" varchar(30) NOT NULL, 
+    "position" varchar(30) NOT NULL DEFAULT 'Оператор',
+    "phone_number" varchar(14) NULL,
+    "birthday" date NOT NULL, 
+    "series_number_passport" varchar(12) NOT NULL, 
+);
+CREATE TABLE "service" 
+(
+    "id_service" integer NOT NULL PRIMARY KEY, 
+    "name" varchar(100) NOT NULL, 
+    "cost" integer NOT NULL CHECK ("cost">0)
+);
+
+CREATE TABLE "order" 
+(
+    "id_order" integer NOT NULL PRIMARY KEY, 
+    "addressPV" varchar(100) NOT NULL, 
+    "addressPD" varchar(100) NOT NULL, 
+    "date" date NULL, "time_in" time NULL, 
+    "count_objects" integer NOT NULL CHECK ("count_objects">0),
+    "weight" double precision NOT NULL CHECK ("weight">0),
+    "type_thing" varchar(100) NOT NULL, 
+    "confirmation_order" varchar(20) NOT NULL DEFAULT 'Не подтвержденно',
+    "price" integer NOT NULL CHECK ("price">0),
+    "type_pay" varchar(100) NOT NULL, 
+    "status_pay" varchar(100) NOT NULL, DEFAULT 'Не оплачено'
+    "status_order" varchar(100) NOT NULL, DEFAULT 'В обработке'
+    "id_client_id" integer, 
+    "id_operator_id" integer, 
+    "id_worker_id" integer,
+    FOREIGN KEY ("id_client_id") REFERENCES "client" ("id_client") ON DELETE SET NULL;
+    FOREIGN KEY ("id_operator_id") REFERENCES "operator" ("id_operator") ON DELETE SET NULL;
+    FOREIGN KEY ("id_worker_id") REFERENCES "worker" ("id_worker") ON DELETE SET NULL;
+
+);
+CREATE TABLE "car" 
+(
+    "id_car" integer NOT NULL PRIMARY KEY, 
+    "type_car" varchar(100) NOT NULL, 
+    "price" varchar(100) NOT NULL CHECK ("price">0),
+    "car_number":varchar(10) NOT NULL,
+    "status":varchar(10) NOT NULL, 
+    "id_worker_id" integer
+    FOREIGN KEY ("id_worker_id") REFERENCES "worker" ("id_worker") ON DELETE SET NULL;
+);
+
+CREATE TABLE "car_order" 
+(
+    "number_car_id" integer NOT NULL, 
+    "number_order_id" integer NOT NULL
+    FOREIGN KEY ("number_car_id") REFERENCES "car" ("id_car") ON DELETE CASCADE;
+    FOREIGN KEY ("number_order_id") REFERENCES "order" ("id_order") ON DELETE CASCADE;
+);
+
+CREATE TABLE "additional_service" 
+(
+    "number_order_id" integer NOT NULL, 
+    "number_service_id" integer NOT NULL
+    FOREIGN KEY ("number_order_id") REFERENCES "order" ("id_order") ON DELETE CASCADE;
+    FOREIGN KEY ("number_service_id") REFERENCES "service" ("id_service") ON DELETE CASCADE;
+);
+
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: https://ondras.zarovi.cz/sql/demo/ -->
+<sql>
+<datatypes db="mysql">
+	<group label="Numeric" color="rgb(238,238,170)">
+		<type label="Integer" length="0" sql="INTEGER" quote=""/>
+	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+	 	<type label="INT" length="0" sql="INT" quote=""/>
+		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
+		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+	</group>
+
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="Char" length="1" sql="CHAR" quote="'"/>
+		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+		<type label="Binary" length="1" sql="BINARY" quote="'"/>
+		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+	</group>
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Date" length="0" sql="DATE" quote="'"/>
+		<type label="Time" length="0" sql="TIME" quote="'"/>
+		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+		<type label="Year" length="0" sql="YEAR" quote=""/>
+		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+	</group>
+	
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="ENUM" length="1" sql="ENUM" quote=""/>
+		<type label="SET" length="1" sql="SET" quote=""/>
+		<type label="Bit" length="0" sql="bit" quote=""/>
+	</group>
+</datatypes><table x="355" y="76" name="Сlient">
+<row name="id_client" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Full_name" null="0" autoincrement="0">
+<datatype>CHAR(50)</datatype>
+<default>'NULL'</default></row>
+<row name="birthday" null="0" autoincrement="0">
+<datatype>DATE(10)</datatype>
+<default>'NULL'</default></row>
+<row name="phone_number" null="1" autoincrement="0">
+<datatype>CHAR(14)</datatype>
+<default>NULL</default></row>
+<row name="series_number_passport" null="1" autoincrement="0">
+<datatype>CHAR(12)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_client</part>
+</key>
+</table>
+<table x="353" y="237" name="worker">
+<row name="id_worker" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Full_name" null="0" autoincrement="0">
+<datatype>CHAR(50)</datatype>
+<default>'NULL'</default></row>
+<row name="experience" null="0" autoincrement="0">
+<datatype>CHAR(30)</datatype>
+<default>'NULL'</default></row>
+<row name="position" null="1" autoincrement="0">
+<datatype>CHAR(30)</datatype>
+<default>NULL</default></row>
+<row name="series_number_passport" null="1" autoincrement="0">
+<datatype>CHAR(12)</datatype>
+<default>NULL</default></row>
+<row name="birthday" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="phone_number" null="1" autoincrement="0">
+<datatype>CHAR(14)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_worker</part>
+</key>
+</table>
+<table x="355" y="439" name="operator">
+<row name="id_operator" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Full_name" null="0" autoincrement="0">
+<datatype>CHAR(50)</datatype>
+<default>'NULL'</default></row>
+<row name="experience" null="0" autoincrement="0">
+<datatype>CHAR(30)</datatype>
+<default>'NULL'</default></row>
+<row name="position" null="0" autoincrement="0">
+<datatype>CHAR(30)</datatype>
+<default>'NULL'</default></row>
+<row name="series_number_passport" null="1" autoincrement="0">
+<datatype>CHAR(12)</datatype>
+<default>NULL</default></row>
+<row name="birthday" null="0" autoincrement="0">
+<datatype>DATE(10)</datatype>
+<default>'NULL'</default></row>
+<row name="phone_number" null="1" autoincrement="0">
+<datatype>CHAR(14)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_operator</part>
+</key>
+</table>
+<table x="605" y="273" name="order">
+<row name="id_order" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_client" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Сlient" row="id_client" />
+</row>
+<row name="id_worker" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="worker" row="id_worker" />
+</row>
+<row name="id_operator" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="operator" row="id_operator" />
+</row>
+<row name="addressPV" null="0" autoincrement="0">
+<datatype>CHAR(100)</datatype>
+<default>'NULL'</default></row>
+<row name="addressPD" null="1" autoincrement="0">
+<datatype>CHAR(100)</datatype>
+<default>NULL</default></row>
+<row name="date" null="0" autoincrement="0">
+<datatype>DATE(10)</datatype>
+<default>'NULL'</default></row>
+<row name="time_in" null="1" autoincrement="0">
+<datatype>TIME</datatype>
+<default>NULL</default></row>
+<row name="count_objects" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="weight" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="type_thing" null="0" autoincrement="0">
+<datatype>CHAR(100)</datatype>
+<default>'NULL'</default></row>
+<row name="confirmation_order" null="0" autoincrement="0">
+<datatype>CHAR(20)</datatype>
+<default>'NULL'</default></row>
+<row name="price" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="type_pay" null="1" autoincrement="0">
+<datatype>CHAR(100)</datatype>
+<default>NULL</default></row>
+<row name="status_pay" null="0" autoincrement="0">
+<datatype>CHAR(12)</datatype>
+<default>'Не оплачено'</default></row>
+<row name="status_order" null="0" autoincrement="0">
+<datatype>CHAR(100)</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id_order</part>
+</key>
+</table>
+<table x="628" y="79" name="Car">
+<row name="id_car" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_worker" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="worker" row="id_worker" />
+</row>
+<row name="type_car" null="0" autoincrement="0">
+<datatype>CHAR(100)</datatype>
+<default>'NULL'</default></row>
+<row name="price" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="car_number" null="1" autoincrement="0">
+<datatype>CHAR(10)</datatype>
+<default>NULL</default></row>
+<row name="status" null="0" autoincrement="0">
+<datatype>CHAR(20)</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id_car</part>
+</key>
+</table>
+<table x="788" y="476" name="service">
+<row name="id_service" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>CHAR(100)</datatype>
+<default>'NULL'</default></row>
+<row name="cost" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_service</part>
+</key>
+</table>
+<table x="779" y="318" name="additional_service">
+<row name="id_order" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="order" row="id_order" />
+</row>
+<row name="id_service" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="service" row="id_service" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="787" y="97" name="Car_order">
+<row name="number_car" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Car" row="id_car" />
+</row>
+<row name="number_order" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="order" row="id_order" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+</sql>

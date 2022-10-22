@@ -3,7 +3,7 @@ from email.policy import default
 from pyexpat import model
 from tokenize import group
 from rest_framework import serializers
-from .models import client, operator, order, service,worker
+from .models import client, operator, order, service,worker,Car
 from django.contrib.auth.models import User,Group
 class userSerializer(serializers.ModelSerializer):
     class Meta:
@@ -41,8 +41,16 @@ class serviceSerializer(serializers.ModelSerializer):
         fields=('__all__')
 class orderSerializer(serializers.ModelSerializer):
     name_client=serializers.CharField(source="id_client.Full_name")
-    name_worker=serializers.CharField(source="id_worker.Full_name")
+    user_client=serializers.CharField(source="id_client.user.id")
+    name_worker=serializers.CharField(source="id_worker.Full_name",default='-')
+    user_worker=serializers.CharField(source="id_worker.user.id",default='-')
     name_operator=serializers.CharField(source="id_operator.Full_name")
+    user_operator=serializers.CharField(source="id_operator.user.id")
     class Meta:
         model=order
         fields=('__all__')
+class carSerializer(serializers.ModelSerializer):
+    name_worker=serializers.CharField(source="id_worker.Full_name",default='-')
+    class Meta:
+        model = Car
+        fields = ('__all__')

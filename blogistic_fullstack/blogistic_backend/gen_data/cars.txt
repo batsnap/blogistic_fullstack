@@ -1,0 +1,80 @@
+1.5 тонны
+Тент низкий 3 метра
+Фургон 3 метра
+Фургон высокий 3 метра
+Тент низкий 4 метра
+Фургон 4 метра
+Фургон высокий 4 метра
+Каблук
+
+3 тонны
+Тент 3 тонны
+Фургон 3 тонны  
+Борт 3 тонны
+Рефрижератор 3 тонны
+
+5 тонн
+Борт 5 метров 5 тонн
+Фургон 5 метров 5тонн
+Тент 5 метров 5 тонн
+Рефрижератор 5 метров 5 тонн
+
+10 тонн
+Тент 6 метров 10 тонн
+Фургон 6 метров 10 тонн
+Борт 6 метров 10 тонн
+Рефрижератор 6 метров 10 тонн
+
+20тонн
+Тент 20 тонн
+Фургон 20 тонн
+Борт 20 тонн
+Рефрижератор 20 тонн
+
+1.5 tons
+Tent low 3 meters
+Van 3 meters
+Van high 3 meters
+Tent low 4 meters
+Van 4 meters
+Van high 4 meters
+Heel
+
+3 tons
+Tent 3 tons
+Van 3 tons
+Board 3 tons
+Refrigerator 3 tons
+
+5 tons
+Board 5 meters 5 tons
+Van 5 meters 5 tons
+Tent 5 meters 5 tons
+Refrigerator 5 meters 5 tons
+
+10 tons
+Tent 6 meters 10 tons
+Van 6 meters 10 tons
+Board 6 meters 10 tons
+Refrigerator 6 meters 10 tons
+
+20tons
+Tent 20 tons
+Van 20 tons
+Board 20 tons
+Refrigerator 20 tons
+
+
+
+{
+"id_user":1,
+"car_type":"Tent 3 tons",
+"addressPV":"Подольск",
+"addressPD":"Москва",
+"date":"2022-09-11",
+"time_in":"11:00",
+"count_objects":100,
+"weight":"1000",
+"type_thing":"dasd",
+"price":2000
+}

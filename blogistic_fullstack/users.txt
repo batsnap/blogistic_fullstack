@@ -1,0 +1,9 @@
+    {
+        "user":1,
+        "username":"batyr1",
+        "email":"batkur1@gmail.com",
+        "Full_name":"Батыр Курбанов Батырович",
+        "birthday":"2001-09-12",
+        "phone_number":"",
+        "series_number_passport":"4615 899671"
+    }

@@ -111,3 +111,36 @@ export default function App() {
 		</div>	
 	);
 }
+
+
+{/* <option value='Tent low 3 meters'>Тент низкий 3 метра</option>
+                                <option value='Van 3 meters'>Фургон 3 метра</option>
+                                <option value='Van high 3 meters'>Фургон высокий 3 метра</option>
+                                <option value='Tent low 4 meters'>Тент низкий 4 метра</option>
+                                <option value='Van 4 meters'>Фургон 4 метра</option>
+                                <option value='Van high 4 meters'>Фургон высокий 4 метра</option>
+                                <option value='Heel'>Каблук</option>
+
+
+                                <option value='Tent 3 tons'>Тент 3 тонны</option>
+                                <option value='Van 3 tons'>Фургон 3 тонны  </option>
+                                <option value='Board 3 tons'>Борт 3 тонны</option>
+                                <option value='Refrigerator 3 tons'>Рефрижератор 3 тонны</option>
+
+
+                                <option value='Board 5 meters 5 tons'>Борт 5 метров 5 тонн</option>
+                                <option value='Van 5 meters 5 tons'>Фургон 5 метров 5тонн</option>
+                                <option value='Tent 5 meters 5 tons'>Тент 5 метров 5 тонн</option>
+                                <option value='Refrigerator 5 meters 5 tons'>Рефрижератор 5 метров 5 тонн</option>
+
+
+                                <option value='Tent 6 meters 10 tons'>Тент 6 метров 10 тонн</option>
+                                <option value='Van 6 meters 10 tons'>Фургон 6 метров 10 тонн</option>
+                                <option value='Board 6 meters 10 tons'>Борт 6 метров 10 тонн</option>
+                                <option value='Refrigerator 6 meters 10 tons'>Рефрижератор 6 метров 10 тонн</option>
+
+
+                                <option value='Tent 20 tons'>Тент 20 тонн</option>
+                                <option value='Van 20 tons'>Фургон 20 тонн</option>
+                                <option value='Board 20 tons'>Борт 20 тонн</option>
+                                <option value='Refrigerator 20 tons'>Рефрижератор 20 тонн</option> */}

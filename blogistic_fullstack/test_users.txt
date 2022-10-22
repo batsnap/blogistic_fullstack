@@ -1,14 +1,158 @@
-Клиенты
-Родионов Лев Маркович/Li=&r4A!/Rodionov_Lev/21.03.1961/Rodionov_Lev@sorrrry.xyz/8430 7695 1549 5103 
-Акимов Артур Александрович/wJVJ88UK/Akimov_Artur/17.07.1989/Akimov_Artur@sorrrry.xyz/6189 2870 8969 3328 
-Жуков Артём Владиславович/y*WB+H8T/ZHukov_Artyom/10.03.1950/ZHukov_Artyom@sorrrry.xyz/6438 3331 7439 8734 
+this.setState({content:content})
+        if (Math.round(new Date().getTime()/1000.0)<jwtDecode(localStorage.token)['exp'])
+		{
+			console.log(11);
+			axios.get("http://localhost:8000/api/Orders_client/"+jwtDecode(localStorage.token).user_id+'/',
+			{
+			
+			'method':'get',
+			'headers':{
+			'Authorization':"Bearer "+localStorage.token}
+			})
+			.then(res =>
+			{
+                let content = [];
+                for (let i = 0; i < res.data.length; i++) 
+                {
+                    content.push(<li>test</li>);
+                }
+				this.setState
+				({
+					profile: res.data,
+					Authorization:true
+				});
+			})
+		}
+		else
+		{
+			
+			axios.post('http://localhost:8000/api/token/refresh',{'refresh':localStorage.refresh})
+			.then(res=>
+			{
+				localStorage.setItem('token',res.data.access);
+			});
+			window.location.replace('/my_orders/');
+		}
+<section className="u-clearfix u-section-1" id="sec-896a">
+        <center>
+    <table>
+        <tr>
+        <td>
+       
+        </td>
+        </tr>
+        <tr>
+            <td>
+           
+                <div className="u-container-style u-list-item u-repeater-item">
+                    <div className="u-container-layout u-similar-container u-container-layout-3">
+                        <div className="u-container-style u-custom-item u-group u-palette-3-base u-preserve-proportions u-radius-15 u-shape-round u-group-2">
+                            <div className="u-container-layout u-valign-bottom u-container-layout-4">
+                                <h4 className="u-text u-text-default u-text-2"> Заказ номер 0000000</h4>
+                                <div className="u-table u-table-responsive u-table-2">
+                                    <table className="u-table-entity">
+                                        <colgroup>
+                                            <col style={{ width: "50.0%" }}></col>
+                                            <col style={{ width: "50.0%" }}></col>
+                                        </colgroup>
+                                        <tbody className="u-table-body">
+                                            <tr style={{ height: "46px" }}>
+                                                <td className="u-table-cell">Статус заказа</td>
+                                                <td className="u-table-cell"></td>
+                                            </tr>
+                                            <tr style={{ height: "46px" }}>
+                                                <td className="u-table-cell">Дата доставки</td>
+                                                <td className="u-table-cell"></td>
+                                            </tr>
+                                            <tr style={{ height: "46px" }}>
+                                                <td className="u-table-cell">Место назначеия</td>
+                                                <td className="u-table-cell"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="https://nicepage.com/website-templates" className="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1">Подробнее о заказе</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="u-container-style u-list-item u-repeater-item">
+                    <div className="u-container-layout u-similar-container u-container-layout-3">
+                        <div className="u-container-style u-custom-item u-group u-palette-3-base u-preserve-proportions u-radius-15 u-shape-round u-group-2">
+                            <div className="u-container-layout u-valign-bottom u-container-layout-4">
+                                <h4 className="u-text u-text-default u-text-2"> Заказ номер 0000000</h4>
+                                <div className="u-table u-table-responsive u-table-2">
+                                    <table className="u-table-entity">
+                                        <colgroup>
+                                            <col style={{ width: "50.0%" }}></col>
+                                            <col style={{ width: "50.0%" }}></col>
+                                        </colgroup>
+                                        <tbody className="u-table-body">
+                                            <tr style={{ height: "46px" }}>
+                                                <td className="u-table-cell">Статус заказа</td>
+                                                <td className="u-table-cell"></td>
+                                            </tr>
+                                            <tr style={{ height: "46px" }}>
+                                                <td className="u-table-cell">Дата доставки</td>
+                                                <td className="u-table-cell"></td>
+                                            </tr>
+                                            <tr style={{ height: "46px" }}>
+                                                <td className="u-table-cell">Место назначеия</td>
+                                                <td className="u-table-cell"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="https://nicepage.com/website-templates" className="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1">Подробнее о заказе</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        </div>
+            </td>
+        </tr>
+    </table>
+    </center>
+</section>
 
-Операторы
-Щукин Давид Александрович/ALaA0t@-/SCHukin_David_Aleksandrovich0/Оператор/SCHukin_David_Aleksandrovich0@sorrrry.xyz/+72987186773
-Соколов Владимир Сергеевич/N1q47?vE/Sokolov_Vladimir_Sergeevich1/Оператор/Sokolov_Vladimir_Sergeevich1@sorrrry.xyz/+76155427451
-Иванов Михаил Леонидович/sC*0Q*AA/Ivanov_Mihail_Leonidovich2/Оператор/Ivanov_Mihail_Leonidovich2@sorrrry.xyz/+73787045106
 
-Рабочие
-Игнатов Матвей Александрович/oe8Xw2fR/Ignatov_Matvei_Aleksandrovich50/Водитель/Ignatov_Matvei_Aleksandrovich50@sorrrry.xyz/+75634196302
-Кожевников Даниил Антонович/64>dPfoD/Kozhevnikov_Daniil_Antonovich51/Водитель/Kozhevnikov_Daniil_Antonovich51@sorrrry.xyz/+72780152339
-Комаров Давид Артёмович/VdL5AekQ/Komarov_David_Artyomovich52/Водитель/Komarov_David_Artyomovich52@sorrrry.xyz/+78867731614
+ this.setState({content:content})
+        if (Math.round(new Date().getTime()/1000.0)<jwtDecode(localStorage.token)['exp'])
+		{
+			console.log(11);
+			axios.get("http://localhost:8000/api/Orders_client/"+jwtDecode(localStorage.token).user_id+'/',
+			{
+			
+			'method':'get',
+			'headers':{
+			'Authorization':"Bearer "+localStorage.token}
+			})
+			.then(res =>
+			{
+                let content = [];
+                for (let i = 0; i < res.data.length; i+=3) 
+                {
+                    content.push(
+                    
+                    );
+                }
+				this.setState
+				({
+					profile: res.data,
+					Authorization:true
+				});
+			})
+		}
+		else
+		{
+			
+			axios.post('http://localhost:8000/api/token/refresh',{'refresh':localStorage.refresh})
+			.then(res=>
+			{
+				localStorage.setItem('token',res.data.access);
+			});
+			window.location.replace('/my_orders/');
+		}
