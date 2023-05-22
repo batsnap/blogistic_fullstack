@@ -70,8 +70,8 @@ class ListClients extends React.Component {
 	render() {
 		return (
 			<div className="row">
-				<div className="col-sm-2"></div>
-				<div className="col-sm-8 text-center bg-light text-black ">
+				<div className="col-sm-1"></div>
+				<div className="col-sm-10 text-center bg-light text-black ">
 					<input type="text"  value={this.state.search_words} onChange={this.onChange}/>
                     <button className="btn" onClick={this.search_in_orders}>Поиск</button>
 					<select name='type_search' onChange={this.onChange_type_search}>

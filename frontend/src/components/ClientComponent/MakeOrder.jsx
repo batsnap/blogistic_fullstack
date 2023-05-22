@@ -1,7 +1,9 @@
 import React from "react";
 import { Form,Button } from "react-bootstrap";
 import jwtDecode from "jwt-decode";
+import DatePicker from 'react-date-picker';
 const axios = require('axios')
+
 
 class MakeOrder extends React.Component {
 	constructor(props) {
@@ -31,6 +33,7 @@ class MakeOrder extends React.Component {
 		this.onBlurTimeCheck=this.onBlurTimeCheck.bind(this);
 		this.onBlurDateCheck=this.onBlurDateCheck.bind(this);
 		this.onBlurWeightCheck=this.onBlurWeightCheck.bind(this);
+		this.onChangeDate=this.onChangeDate.bind(this);
 		this.get_car_type=this.get_car_type.bind(this);
 	}
 	
@@ -80,7 +83,7 @@ class MakeOrder extends React.Component {
 	}
 	onBlurDateCheck(e)
 	{
-		const paragraph = e.target.value;
+		const paragraph = e;
 		const regex = /^([0-9]{4}[-/]?((0[13-9]|1[012])[-/]?(0[1-9]|[12][0-9]|30)|(0[13578]|1[02])[-/]?31|02[-/]?(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00)[-/]?02[-/]?29)$/
 
 		const found = paragraph.match(regex);
@@ -92,8 +95,8 @@ class MakeOrder extends React.Component {
 		else
 		{
 			console.log(new Date().getTime()/1000)
-			console.log(new Date(e.target.value).getTime()/1000)
-			if ((Math.round((new Date().getTime()/1000))-100000)<=Math.round(new Date(e.target.value).getTime()/1000))
+			console.log(new Date(e).getTime()/1000)
+			if ((Math.round((new Date().getTime()/1000))-100000)<=Math.round(new Date(e.getTime()/1000)))
 			{
 				this.setState({date_check:''})
 			}
@@ -113,6 +116,10 @@ class MakeOrder extends React.Component {
 	onChange(e)
 	{
 		this.setState({[e.target.name]:e.target.value})
+	}
+	onChangeDate(e)
+	{
+		this.setState({date:e})
 	}
 	get_car_type(e)
 	{
@@ -184,12 +191,17 @@ class MakeOrder extends React.Component {
 					</Form.Group>
 					<Form.Group style={{ width: '500px' }}>
 						<Form.Label>Желаемая дата отправления груза<br/>(Год-Месяц-День)</Form.Label>
-						<Form.Control 
-							type="date"
-							format="%d/%m/%yyyy" 
-							name="date"
-							onBlur={this.onBlurDateCheck}
-							onChange={this.onChange}/>
+						<br></br>
+						<DatePicker
+							id='date'
+							value={this.state.date}
+							onChange={this.onChangeDate}
+							format="dd-MM-yyyy"
+							minDate={new Date()}
+							style={{ width: '500px' }}
+							>
+							
+						</DatePicker>
 					</Form.Group>
 					<h3>{this.state.date_check}</h3>
 					<Form.Group style={{ width: '500px' }}>

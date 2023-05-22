@@ -51,7 +51,7 @@ class ClientViewSet(viewsets.ViewSet):
 		serializer = clientSerializer(user)
 		return Response(serializer.data)
 class OperatorViewSet(viewsets.ViewSet):
-
+	permission_classes = [permissions.IsAuthenticated]
 	def list(self, request):
 		queryset = operator.objects.all()
 		serializer = operatorSerializer(queryset, many=True)
@@ -63,7 +63,7 @@ class OperatorViewSet(viewsets.ViewSet):
 		serializer = operatorSerializer(user)
 		return Response(serializer.data)
 class WorkerViewSet(viewsets.ViewSet):
-
+	permission_classes = [permissions.IsAuthenticated]
 	def list(self, request):
 		queryset = worker.objects.all()
 		serializer = workerSerializer(queryset, many=True)
@@ -216,6 +216,7 @@ def count_free_cars(request):
 
 @api_view(['POST'])
 def MakeOrder(request):
+	print(request.data['type_car'])
 	new_order=order()
 	new_order.id_order=order.objects.all().order_by('id_order').reverse()[0].id_order+1
 	new_order.id_client=client.objects.get(user=request.data['id_user'])
@@ -226,7 +227,7 @@ def MakeOrder(request):
 	new_order.id_worker=worker.objects.all().filter(id_worker=Car.objects.all().filter(status='free').filter(type_car=request.data['type_car'])[0].id_worker.id_worker)[0]
 	new_order.addressPD=request.data['addressPD']
 	new_order.addressPV=request.data['addressPV']
-	new_order.date=request.data['date']
+	new_order.date=request.data['date'][0:10]
 	new_order.time_in=request.data['time_in']
 	new_order.count_objects=request.data['count_objects']
 	new_order.weight=request.data['weight']
@@ -245,7 +246,7 @@ def MakeOrder(request):
 	status_car.save()
 
 
-	return Response(status=status.HTTP_201_CREATED)
+	return Response(status=status.HTTP_201_CREATED,data='Order created')
 
 @api_view(['GET'])
 def Free_Workers(request):
@@ -293,8 +294,8 @@ def EditOrder(request):
 	return Response(status=status.HTTP_201_CREATED)
 @api_view(['GET'])
 def ListOrderProcessing(request):
-	OrdersOperator=order.objects.all().filter(id_operator=operator.objects.all().filter(user=request.GET['id_operator'])[0])
-	print(OrdersOperator)
+	print(date.today())
+	OrdersOperator=order.objects.all().filter(id_operator=operator.objects.all().filter(user=request.GET['id_operator'])[0]).filter(date__gte=date.today())
 	result=orderSerializer(OrdersOperator,many=True)
 	return Response(result.data)
 @api_view(['GET'])
@@ -374,7 +375,7 @@ def GetTypeCar(request):
 			if Car.objects.all().filter(type_car=i).filter(status='free').count()>0:
 				k.append(i)
 	elif int(request.data['weight'])<3000:
-		for i in cars[request.data['type_thing']+'/	3000']:
+		for i in cars[request.data['type_thing']+'/3000']:
 			if Car.objects.all().filter(type_car=i).filter(status='free').count()>0:
 				k.append(i)
 	elif int(request.data['weight'])<5000:
@@ -611,4 +612,29 @@ def ChangeStatusPay(request):
 	order_to_change=order.objects.all().filter(id_order=request.data['id_order'])[0]
 	order_to_change.status_pay=request.data['status_pay']
 	order_to_change.save()
+	return Response(status=200)
+
+@api_view(['GET','DELETE'])
+def RemoveOrder(request):
+	try:
+		order_to_change=order.objects.all().filter(id_order=request.GET['id_order'])[0]
+		order_to_change.delete()
+		return Response(status=200,data='Deleted order-'+str(request.GET['id_order']))
+	except:
+		return Response(status=400,data='Order not found')
+
+@api_view(['PUT'])
+def PayOrder(request):
+	try:
+		order_to_change=order.objects.all().filter(id_order=request.data['id_order'])[0]
+		order_to_change.status_pay='Оплачено'
+		order_to_change.save()
+		return Response(status=200,data='Updated order-'+str(request.data['id_order']))
+	except:
+		return Response(status=400,data='Order not found')
+@api_view(['POST'])
+def CheckPass(request):
+	a=User.objects.all().filter(id=request.data['id_user'])[0]
+	a.set_password(request.data['password'])
+	a.save()
 	return Response(status=200)

@@ -121,7 +121,7 @@ class AllOrdersWorker extends React.Component {
 							{this.state.post.map(posts=>
 								<tr>
 									<td><a href={"AllOrders/"+posts.id_order+"/"} key={posts.id_order} className="text-black">{posts.id_order}</a></td>
-									<td><a href={'/ListClients/'+posts.user_id}>{posts.name_client}</a></td>
+									<td><a href={'/ListClients/'+posts.user_client}>{posts.name_client}</a></td>
 									<td><a href={'/ListWorkers/'+posts.user_worker}>{posts.name_worker}</a></td>
 									<td>{posts.name_operator}</td>
 									<td>{posts.addressPV}</td>

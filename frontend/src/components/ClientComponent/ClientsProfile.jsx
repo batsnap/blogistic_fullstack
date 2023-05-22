@@ -30,54 +30,53 @@ class ClientsProfile extends React.Component {
 
 	render() {
 		return (
-			<section className="u-clearfix u-section-1" id="sec-9a73">
-				<div className="u-clearfix u-sheet u-sheet-1">
-					<div className="u-container-style u-group u-opacity u-opacity-85 u-palette-3-base u-radius-48 u-shape-round u-group-1">
-						<div className="u-container-layout u-container-layout-1">
-							<div className="u-table u-table-responsive u-table-1">
-								<center><h3>Данные профиля</h3></center>
-								<table className="u-table-entity">
-									<colgroup>
-										<col width="47%"></col>
-										<col width="53%"></col>
-									</colgroup>
-									<tbody className="u-table-body">
-										<tr style={{ height: '69px' }}>
-											<td className="u-table-cell">Имя пользователя:</td>
-											<td className="u-table-cell">{this.state.profile.username}</td>
-										</tr>
-										<tr style={{ height: '69px' }}>
-											<td className="u-table-cell">Электронная почта:</td>
-											<td className="u-table-cell">{this.state.profile.email}</td>
-										</tr>
-										<tr style={{ height: '69px' }}>
-											<td className="u-table-cell">Полное имя:</td>
-											<td className="u-table-cell">{this.state.profile.Full_name}</td>
-										</tr>
-										<tr style={{ height: '69px' }}>
-											<td className="u-table-cell">Номер телефона:</td>
-											<td className="u-table-cell">{this.state.profile.phone_number}</td>
-										</tr>
-										<tr style={{ height: '69px' }}>
-											<td className="u-table-cell">Серия и номер паспорта:</td>
-											<td className="u-table-cell">{this.state.profile.series_number_passport}</td>
-										</tr>
-										<tr style={{ height: '69px' }}>
-											<td className="u-table-cell">Дата рождения:<br></br>
-											</td>
-											<td className="u-table-cell">{this.state.profile.birthday}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+			<>
+				<div className="container">
+					<div className="row">
+						<div className="col-sm-6">
+							<table className="table bg-warning">
+								<colgroup>
+									<col width="47%"></col>
+									<col width="53%"></col>
+								</colgroup>
+								<tbody className="u-table-body">
+									<tr style={{ height: '69px' }}>
+										<td className="u-table-cell">Имя пользователя:</td>
+										<td className="u-table-cell">{this.state.profile.username}</td>
+									</tr>
+									<tr style={{ height: '69px' }}>
+										<td className="u-table-cell">Электронная почта:</td>
+										<td className="u-table-cell">{this.state.profile.email}</td>
+									</tr>
+									<tr style={{ height: '69px' }}>
+										<td className="u-table-cell">Полное имя:</td>
+										<td className="u-table-cell">{this.state.profile.Full_name}</td>
+									</tr>
+									<tr style={{ height: '69px' }}>
+										<td className="u-table-cell">Номер телефона:</td>
+										<td className="u-table-cell">{this.state.profile.phone_number}</td>
+									</tr>
+									<tr style={{ height: '69px' }}>
+										<td className="u-table-cell">Серия и номер паспорта:</td>
+										<td className="u-table-cell">{this.state.profile.series_number_passport}</td>
+									</tr>
+									<tr style={{ height: '69px' }}>
+										<td className="u-table-cell">Дата рождения:<br></br>
+										</td>
+										<td className="u-table-cell">{this.state.profile.birthday}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div className="col-sm-6">
+							<Link to="/EditProfile" className="btn btn-primary mb-1 p-4" style={{width:'300px'}}>Редактировать данные профиля</Link><br />
+							<Link to="/MakeOrder" className="btn btn-primary mb-1 p-4" style={{width:'300px'}}>Сделать заказ</Link><br />
+							<Link to="/ChangePassword" className="btn btn-primary mb-1 p-4" style={{width:'300px'}}>Изменть пароль</Link><br />
+							<Link to="/MyOrders" className="btn btn-primary mb-1 p-4" style={{width:'300px'}}>Мои заказы</Link><br />
 						</div>
 					</div>
-					<Link to="/EditProfile" className="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1">Редактировать данные профиля</Link>
-					<Link to="/MakeOrder" className="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-2">Сделать заказ</Link>
-					<Link to="/ChangePassword" className="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-3">Изменть пароль</Link>
-					<Link to="/MyOrders" className="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-4">Мои заказы</Link>
 				</div>
-			</section>
+			</>
 		);
 	}
 };

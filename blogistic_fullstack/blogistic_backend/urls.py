@@ -44,6 +44,9 @@ urlpatterns=router.urls+[
 	path('api/ChangeStatusOrder/',ChangeStatusOrder,name='ChangeStatusOrder'),
 	path('api/ChangeWorker/',ChangeWorker,name='ChangeWorker'),
 	path('api/ChangeStatusPay/',ChangeStatusPay,name='ChangeStatusPay'),
+	path('api/DeleteOrder/',RemoveOrder,name='RemoveOrder'),
+	path('api/PayOrder/',PayOrder,name='PayOrder'),
+	path('api/CheckPass/',CheckPass,name='CheckPass'),
 	
 	
 	

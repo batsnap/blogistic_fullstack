@@ -11,6 +11,7 @@ class AllOrders extends React.Component {
 		type_search:'',
 	  };
 	  this.sorting_id=this.sorting_id.bind(this);
+	  this.dropsearch=this.dropsearch.bind(this);
 	  this.filter_cash=this.filter_cash.bind(this);
       this.search_in_orders=this.search_in_orders.bind(this);
       this.onChange=this.onChange.bind(this);
@@ -24,11 +25,15 @@ class AllOrders extends React.Component {
         this.setState({search_words:e.target.value})
     }
 	sorting_id(){
-	  this.setState({post:this.state.post.sort((a, b) => a.id_operator > b.id_operator ? 1:-1)});
+	  this.setState({post:this.state.post.sort((a, b) => a.id_order > b.id_order ? 1:-1)});
 	}
 
 	filter_cash(){
 		this.setState({post:this.state.post.filter(el=>el.type_pay==='card')})
+	}
+	dropsearch()
+	{
+		this.setState({post:this.state.post1})
 	}
     search_in_orders()
     {
@@ -93,6 +98,7 @@ class AllOrders extends React.Component {
 						<option value="name_worker">Имя водителя</option>
 						<option value="name_worker">Имя водителя</option>
 					</select>
+					<input type="button" value="Сброс поиска" onClick={this.dropsearch}/>
                 </div>
                 
 					<table className="table table-sm table-responsive small text-center  table-striped table-hover bg-light text-black">

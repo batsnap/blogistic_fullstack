@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Container } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 const axios = require('axios')
 export default class Login extends Component {
 	constructor(props) {
@@ -19,6 +19,7 @@ export default class Login extends Component {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 	handleSubmit(event) {
+		event.preventDefault();
 		axios.post('http://localhost:8000/api/token/', 
 		{
 			'username': this.state.username,
@@ -40,7 +41,6 @@ export default class Login extends Component {
 			<section className="u-clearfix u-section-1" id="sec-5390">
 				<div className="u-clearfix u-sheet u-valign-middle u-sheet-1">
 					<div className="u-form u-form-1">
-						<Container>
 							<Form className="d-flex flex-column align-items-center">
 								<Form.Group controlId="formBasicUsername" style={{ width: '300px' }}>
 									<Form.Label>Username</Form.Label>
@@ -52,11 +52,10 @@ export default class Login extends Component {
 									<Form.Control type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
 								</Form.Group>
 								<h3>{this.state.feedback}</h3>
-								<Button onClick={this.handleSubmit} className="btn-block" style={{ maxWidth: '300px' }}>
+								<Button type="submit" onClick={this.handleSubmit} className="btn-block" style={{ maxWidth: '300px' }}>
 									Submit
 								</Button>
 							</Form>
-						</Container>
 					</div>
 				</div>
 			</section>

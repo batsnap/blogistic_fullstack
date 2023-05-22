@@ -28,7 +28,7 @@ class EditOrder extends React.Component {
 	}
 	onChange = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
-		console.log(e.target.value)
+		console.log(e.target.value);
 	};
 	handleSubmit(event) {
 		console.log(this.state.id_worker)
@@ -49,7 +49,7 @@ class EditOrder extends React.Component {
 			"status_order":this.state.status_order
 		}
 		)
-	
+		window.location.reload();
 	}
 	componentDidMount() {
 		check_token()

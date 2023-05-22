@@ -71,17 +71,11 @@ class OrderProcessing extends React.Component {
                 <div className="row">
                     <div className="col-sm-2"></div>
                     
-                <div className="col-sm-8  ">
-                <div className="row">
-                    Поиск
-                    <input type="text"  value={this.state.search_words} onChange={this.onChange}/>
-                    <button className="btn" onClick={this.search_in_orders}>cash</button>
-                </div>
-                
+                <div className="col-sm-8">
 					<table className="table table-sm table-responsive small text-center  table-striped table-hover bg-light text-black">
 						<thead>
 							<tr>
-								<th><button className="btn btn-light" onClick={this.sorting_id}>        id_order</button></th>
+								<th ><button className="btn btn-light" onClick={this.sorting_id}>        id_order</button></th>
 								<th><button className="btn btn-light" onClick={this.sorting_name}>      name_client</button></th>
 								<th><button className="btn btn-light" onClick={this.sorting_experience}>  name_operator</button></th>
 								<th><button className="btn btn-light" onClick={this.sorting_position}>      name_worker</button></th>

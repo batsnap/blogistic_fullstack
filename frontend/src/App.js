@@ -19,6 +19,7 @@ import OrdersProfile from "./components/ClientComponent/OrdersProfile";
 import DetailsOrder from "./components/ClientComponent/DetailsOrder";
 import EditProfile from "./components/ClientComponent/EditProfile";
 import MakeOrder from "./components/ClientComponent/MakeOrder";
+import ChangePassword from "./components/ClientComponent/ChangePassword";
 
 //Импортры операторов
 import AllOrders from "./components/OperatorsComponent/AllOrders";
@@ -68,6 +69,8 @@ export default function App() {
 						<Route path="/logout" element={<Logout></Logout>}></Route>
 						
 						<Route path="/profile" element={<Profile></Profile>}></Route>
+						<Route path="/ChangePassword" element={<ChangePassword></ChangePassword>}></Route>
+
 						<Route path="/AllOrders" element={<AllOrders></AllOrders>}></Route>
 						<Route path="/AllOrders/:OrderId/" key={1} element={<EditOrder></EditOrder>}></Route>
 						<Route path="/ListOrderProcessing" element={<OrderProcessing></OrderProcessing>}></Route>

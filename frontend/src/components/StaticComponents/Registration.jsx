@@ -10,7 +10,9 @@ export default class Registration extends Component {
 			surname:'',
 			name:'',
 			series_number_passport:'',
+			series_number_passport_confirmation:'',
 			phone_number:'',
+			phone_number_cofirmation:'',
 			password: '',
 			password_confirmation:'',
 			password_confirmation_state:'',
@@ -30,6 +32,10 @@ export default class Registration extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onChangePassword=this.onChangePassword.bind(this);
 		this.onChangeBirthday=this.onChangeBirthday.bind(this);
+		this.onBlurPassport=this.onBlurPassport.bind(this);
+		this.onBlurPhone_number=this.onBlurPhone_number.bind(this);
+		
+		
 	}
 	onChangeBirthday=(e)=>
 	{
@@ -55,7 +61,7 @@ export default class Registration extends Component {
 		{
 			this.setState({password_confirmation_state:'Пароли не совпадают'})
 		}
-	};
+	};	
 	
 	onChangeUsername = (e) => {
 		axios.post('http://localhost:8000/api/reg_check_username',
@@ -81,28 +87,72 @@ export default class Registration extends Component {
 		
 	};
 	onChangeEmail = (e) => {
-		axios.post('http://localhost:8000/api/reg_check_email',
+		const paragraph = e.target.value;
+		const regex = /^([a-zA-Z1-9\-._]+@[a-z1-9]+(.[a-z1-9]+){1,})$/
+		const found = paragraph.match(regex);
+		if (found===null)
 		{
-			'email':e.target.value
-		})
-		.then(res=>
+			this.setState({user_email_reserved:'Почтовый адресс введен не верно'})
+		}
+		else
 		{
-			
-			if (res.status===200)
+			axios.post('http://localhost:8000/api/reg_check_email',
 			{
-				this.setState(
-				{ 
-					[e.target.name]: e.target.value,
-					user_email_reserved:'Имя свободно'
-				});
-			}
-		})
-		.catch(err=>
-		{
-			this.setState({ user_email_reserved:'Имя занято'});
-		})
+				'email':e.target.value
+			})
+			.then(res=>
+			{
+				
+				if (res.status===200)
+				{
+					this.setState(
+					{ 
+						[e.target.name]: e.target.value,
+						user_email_reserved:''
+					});
+				}
+			})
+			.catch(err=>
+			{
+				this.setState({ user_email_reserved:'Аккаунт с такой почтой уже зарегистрирован'});
+			})
+		}
+		
 		
 	};
+	onBlurPassport=(e)=>
+	{
+		const paragraph = e.target.value;
+		const regex = /^(\d{4}\s\d{6})$/
+
+		const found = paragraph.match(regex);
+		if (found===null)
+		{
+			
+			this.setState({series_number_passport_confirmation:'Данные паспорта введены не верно'})
+		}
+		else
+		{
+			this.setState({series_number_passport_confirmation:''})
+		}
+	}
+	onBlurPhone_number=(e)=>
+	{
+		const paragraph = e.target.value;
+		const regex = /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/
+
+		const found = paragraph.match(regex);
+		if (found===null)
+		{
+			
+			this.setState({phone_number_cofirmation:'Номер телоефона введен не верно'})
+		}
+		else
+		{
+			this.setState({phone_number_cofirmation:''})
+		}
+	}
+
 	onChange = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
@@ -120,6 +170,7 @@ export default class Registration extends Component {
 		this.setState({registration_successful:'Регистрация успешна,через 5 секунд вы будете перенаправлены на страницу входа'})
 		window.location.replace('/login');
 	}
+
 	render() {
 		return (
 			<Container style={{ marginTop: '50px' }}>
@@ -133,7 +184,7 @@ export default class Registration extends Component {
 					</Form.Group>
 
 					<Form.Group style={{ width: '300px' }}>
-						<Form.Label>Пароль</Form.Label>
+						<Form.Label>Почтовый адресс</Form.Label>
 						<Form.Control type="email" placeholder="Enter email" name="email" onBlur={this.onChangeEmail}/><h3>{this.state.user_email_reserved}</h3>   
 					</Form.Group>
 					
@@ -154,13 +205,14 @@ export default class Registration extends Component {
 					</Form.Group>
 					<Form.Group style={{ width: '300px' }}>
 						<Form.Label>Серия и номер паспорта</Form.Label>
-						<Form.Control type="numbers" placeholder="Enter series number passport" name="series_number_passport" value={this.state.series_number_passport} onChange={this.onChange}/>           
+						<Form.Control type="numbers" placeholder="Enter series number passport" name="series_number_passport" value={this.state.series_number_passport} onChange={this.onChange} onBlur={this.onBlurPassport}/> 
+						<h3>{this.state.series_number_passport_confirmation}</h3>          
 						
 					</Form.Group>
 					<Form.Group style={{ width: '300px' }}>
 						<Form.Label>Номер телефона</Form.Label>
-						<Form.Control type="numbers" placeholder="Enter phone number" name="phone_number" value={this.state.phone_number} onChange={this.onChange}/>           
-						
+						<Form.Control type="numbers" placeholder="Enter phone number" name="phone_number" value={this.state.phone_number} onChange={this.onChange} onBlur={this.onBlurPhone_number}/>
+						<h3>{this.state.phone_number_cofirmation}</h3>
 					</Form.Group>
 					
 					<Form.Group controlId="formBasicPassword" style={{ width: '300px' }}>
